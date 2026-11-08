@@ -1,95 +1,206 @@
-
+ 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FarmUnity</title>
+<title>FarmUnity - விவசாய உதவி</title>
+
 <style>
-body{font-family:Arial;background:#eaf5e5;margin:0;color:#174d28}
-header{background:#176b36;color:white;text-align:center;padding:20px}
-h2{text-align:center}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
-button{padding:18px;border:0;border-radius:12px;background:white;color:#174d28;font-size:16px;box-shadow:0 2px 5px #aaa}
-#result{padding:20px;background:white;margin:15px;border-radius:12px}
-input{padding:12px;width:90%;margin:8px}
+body {
+  font-family: Arial, sans-serif;
+  background: #eaf5e5;
+  margin: 0;
+  color: #174d28;
+}
+header {
+  background: #176b36;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 15px;
+}
+button {
+  padding: 16px 8px;
+  border: 0;
+  border-radius: 12px;
+  background: white;
+  color: #174d28;
+  font-size: 15px;
+  box-shadow: 0 2px 5px #aaa;
+}
+#result {
+  background: white;
+  margin: 15px;
+  padding: 18px;
+  border-radius: 12px;
+}
+input, select {
+  padding: 12px;
+  width: 90%;
+  margin: 8px 0;
+}
+.action {
+  background: #176b36;
+  color: white;
+}
 </style>
 </head>
+
 <body>
 
 <header>
 <h1>🌾 FarmUnity</h1>
-<p>Smart Agriculture Assistant</p>
+<h3>ஸ்மார்ட் விவசாய உதவி செயலி</h3>
+<p>விவசாயிகளின் முன்னேற்றத்திற்காக</p>
 </header>
 
-<h2>Farmer Services</h2>
+<h2 style="text-align:center">விவசாய சேவைகள்</h2>
 
 <div class="grid">
-<button onclick="show('🌱 Smart Fasal','Crop guidance and crop assistance.')">🌱 Smart Fasal</button>
-<button onclick="show('🚜 Equipment Sharing','Share or rent farm equipment.')">🚜 Equipment Sharing</button>
-<button onclick="show('🛒 Crop Marketplace','Buy and sell agricultural crops.')">🛒 Crop Marketplace</button>
-<button onclick="show('💧 Groundwater Mapping','Groundwater potential estimation using geological data.')">💧 Groundwater</button>
-<button onclick="show('🏥 Farmer Healthcare','Farmer health information.')">🏥 Farmer Healthcare</button>
-<button onclick="show('🐄 Animal Healthcare','Livestock health information.')">🐄 Animal Healthcare</button>
-<button onclick="show('🛡️ Crop Insurance','Crop insurance support and information.')">🛡️ Crop Insurance</button>
-<button onclick="show('🧪 Soil Testing','Soil health and nutrient testing information.')">🧪 Soil Testing</button>
-<button onclick="show('💰 Expense Calculator','Calculate farm expenses.')">💰 Expenses</button>
-<button onclick="show('🚚 Storage & Transport','Crop storage and transportation.')">🚚 Storage</button>
-<button onclick="voice()">🎤 Tamil Voice Assistant</button>
+
+<button onclick="show('🌱 பயிர் உதவி','பயிர் வளர்ப்பு மற்றும் பயிர் பராமரிப்பு தகவல்கள்.')">🌱 பயிர் உதவி</button>
+
+<button onclick="show('🚜 விவசாயக் கருவிகள்','டிராக்டர் மற்றும் விவசாயக் கருவிகளைப் பகிர்ந்து கொள்ளவும் வாடகைக்கு எடுக்கவும்.')">🚜 கருவிகள் பகிர்வு</button>
+
+<button onclick="show('🛒 பயிர் சந்தை','விவசாயப் பொருட்களை வாங்கவும் விற்கவும்.')">🛒 பயிர் சந்தை</button>
+
+<button onclick="show('💧 நிலத்தடி நீர்','நிலத்தடி நீர் வாய்ப்புகளை மதிப்பிட உதவும் தகவல்கள்.')">💧 நிலத்தடி நீர்</button>
+
+<button onclick="show('🏥 விவசாயிகள் உடல்நலம்','விவசாயிகளுக்கான உடல்நலத் தகவல்கள்.')">🏥 உடல்நலம்</button>
+
+<button onclick="show('🐄 கால்நடை மருத்துவம்','மாடு, ஆடு மற்றும் பிற கால்நடைகளுக்கான தகவல்கள்.')">🐄 கால்நடை உதவி</button>
+
+<button onclick="show('🛡️ பயிர் காப்பீடு','பயிர் காப்பீட்டுத் திட்டங்கள் மற்றும் விண்ணப்பத் தகவல்கள்.')">🛡️ பயிர் காப்பீடு</button>
+
+<button onclick="show('🧪 மண் பரிசோதனை','மண்ணின் தன்மை மற்றும் சத்துக்கள் பற்றிய தகவல்கள்.')">🧪 மண் பரிசோதனை</button>
+
+<button onclick="show('💰 விவசாயச் செலவு','விவசாயச் செலவுகளைக் கணக்கிடுங்கள்.')">💰 செலவுக் கணக்கு</button>
+
+<button onclick="show('🚚 சேமிப்பு மற்றும் போக்குவரத்து','பயிர்களைச் சேமிக்கவும் எடுத்துச் செல்லவும் உதவி.')">🚚 சேமிப்பு</button>
+
+<button onclick="voice()">🎤 தமிழ் குரல் உதவியாளர்</button>
+
 </div>
 
 <div id="result">
-<h3>Welcome Farmer!</h3>
-<p>Select a service above.</p>
+<h3>வணக்கம் விவசாயி! 👨‍🌾</h3>
+<p>உங்களுக்கு தேவையான சேவையைத் தேர்வு செய்யவும்.</p>
 </div>
 
 <script>
-function show(title,description){
-document.getElementById("result").innerHTML=
-"<h2>"+title+"</h2><p>"+description+"</p>";
-if(title.includes("Expenses")){
-document.getElementById("result").innerHTML+=
-'<input id="a" type="number" placeholder="Seed cost ₹">'+
-'<input id="b" type="number" placeholder="Fertilizer cost ₹">'+
-'<input id="c" type="number" placeholder="Labour cost ₹">'+
-'<input id="d" type="number" placeholder="Other cost ₹">'+
-'<button onclick="calc()">Calculate</button><h3 id="total"></h3>';
+
+function show(title, description) {
+
+document.getElementById("result").innerHTML =
+"<h2>" + title + "</h2><p>" + description + "</p>";
+
+if(title.includes("செலவு")) {
+
+document.getElementById("result").innerHTML +=
+'<input type="number" id="a" placeholder="விதை செலவு ₹">' +
+'<input type="number" id="b" placeholder="உர செலவு ₹">' +
+'<input type="number" id="c" placeholder="கூலி செலவு ₹">' +
+'<input type="number" id="d" placeholder="மற்ற செலவுகள் ₹">' +
+'<button class="action" onclick="calc()">மொத்தம் கணக்கிடு</button>' +
+'<h3 id="total"></h3>';
+
 }
-if(title.includes("Marketplace")){
-document.getElementById("result").innerHTML+=
-'<input placeholder="Crop name">'+
-'<input type="number" placeholder="Quantity kg">'+
-'<input type="number" placeholder="Price ₹">'+
-'<button onclick="alert(\'Demo listing added\')">Add Crop</button>';
+
+if(title.includes("பயிர் சந்தை")) {
+
+document.getElementById("result").innerHTML +=
+'<input placeholder="பயிரின் பெயர்">' +
+'<input type="number" placeholder="அளவு கிலோ">' +
+'<input type="number" placeholder="விலை ₹">' +
+'<input placeholder="ஊர் பெயர்">' +
+'<button class="action" onclick="alert(\'பதிவு செய்யப்பட்டது (Demo)\')">பயிரைப் பதிவு செய்</button>';
+
 }
-if(title.includes("Equipment")){
-document.getElementById("result").innerHTML+=
-'<input placeholder="Equipment name">'+
-'<input placeholder="Village">'+
-'<input type="number" placeholder="Rent per day ₹">'+
-'<button onclick="alert(\'Demo equipment added\')">Add Equipment</button>';
+
+if(title.includes("கருவிகள்")) {
+
+document.getElementById("result").innerHTML +=
+'<input placeholder="கருவியின் பெயர்">' +
+'<input placeholder="ஊர் பெயர்">' +
+'<input type="number" placeholder="ஒரு நாள் வாடகை ₹">' +
+'<button class="action" onclick="alert(\'பதிவு செய்யப்பட்டது (Demo)\')">கருவியைப் பதிவு செய்</button>';
+
 }
+
 }
-function calc(){
-let total=(Number(a.value)||0)+(Number(b.value)||0)+
-(Number(c.value)||0)+(Number(d.value)||0);
-document.getElementById("total").innerHTML="Total Expense ₹"+total;
+
+function calc() {
+
+let total =
+(Number(document.getElementById("a").value) || 0) +
+(Number(document.getElementById("b").value) || 0) +
+(Number(document.getElementById("c").value) || 0) +
+(Number(document.getElementById("d").value) || 0);
+
+document.getElementById("total").innerHTML =
+"மொத்த விவசாயச் செலவு: ₹" + total;
+
 }
-function voice(){
-let R=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!R){alert("Open this app in Chrome for voice support");return;}
-let r=new R();
-r.lang="ta-IN";
-r.onresult=function(e){
-let t=e.results[0][0].transcript;
-document.getElementById("result").innerHTML="<h3>"+t+"</h3>";
-if(t.includes("மண்"))show("🧪 Soil Testing","Soil testing information");
-else if(t.includes("மாடு"))show("🐄 Animal Healthcare","Animal health information");
-else if(t.includes("செலவு"))show("💰 Expense Calculator","Calculate farm expenses");
-else if(t.includes("பயிர்"))show("🌱 Smart Fasal","Crop guidance");
-else show("தமிழ் உதவியாளர்","உங்கள் கேள்வியை மீண்டும் சொல்லுங்கள்");
+
+function voice() {
+
+let R = window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!R) {
+alert("தமிழ் குரல் வசதிக்கு Chrome பயன்படுத்தவும்.");
+return;
+}
+
+let r = new R();
+r.lang = "ta-IN";
+
+r.onresult = function(e) {
+
+let t = e.results[0][0].transcript;
+
+document.getElementById("result").innerHTML =
+"<h3>நீங்கள் கூறியது:</h3><p>" + t + "</p>";
+
+if(t.includes("மண்")) {
+show("🧪 மண் பரிசோதனை","மண் பரிசோதனை தகவல்கள்");
+}
+else if(t.includes("மாடு") || t.includes("ஆடு")) {
+show("🐄 கால்நடை மருத்துவம்","கால்நடை பராமரிப்பு தகவல்கள்");
+}
+else if(t.includes("செலவு")) {
+show("💰 விவசாயச் செலவு","செலவுகளைக் கணக்கிடுங்கள்");
+}
+else if(t.includes("பயிர்")) {
+show("🌱 பயிர் உதவி","பயிர் வளர்ப்பு தகவல்கள்");
+}
+else if(t.includes("சந்தை")) {
+show("🛒 பயிர் சந்தை","பயிர்களை வாங்கவும் விற்கவும்");
+}
+else {
+speak("மன்னிக்கவும். மீண்டும் சொல்லுங்கள்");
+}
+
 };
+
 r.start();
+
 }
+
+function speak(text) {
+
+let s = new SpeechSynthesisUtterance(text);
+s.lang = "ta-IN";
+speechSynthesis.speak(s);
+
+}
+
 </script>
 
 </body>
