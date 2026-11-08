@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FarmUnity</title>
+<style>
+body{font-family:Arial;background:#eaf5e5;margin:0;color:#174d28}
+header{background:#176b36;color:white;text-align:center;padding:20px}
+h2{text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
+button{padding:18px;border:0;border-radius:12px;background:white;color:#174d28;font-size:16px;box-shadow:0 2px 5px #aaa}
+#result{padding:20px;background:white;margin:15px;border-radius:12px}
+input{padding:12px;width:90%;margin:8px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌾 FarmUnity</h1>
+<p>Smart Agriculture Assistant</p>
+</header>
+
+<h2>Farmer Services</h2>
+
+<div class="grid">
+<button onclick="show('🌱 Smart Fasal','Crop guidance and crop assistance.')">🌱 Smart Fasal</button>
+<button onclick="show('🚜 Equipment Sharing','Share or rent farm equipment.')">🚜 Equipment Sharing</button>
+<button onclick="show('🛒 Crop Marketplace','Buy and sell agricultural crops.')">🛒 Crop Marketplace</button>
+<button onclick="show('💧 Groundwater Mapping','Groundwater potential estimation using geological data.')">💧 Groundwater</button>
+<button onclick="show('🏥 Farmer Healthcare','Farmer health information.')">🏥 Farmer Healthcare</button>
+<button onclick="show('🐄 Animal Healthcare','Livestock health information.')">🐄 Animal Healthcare</button>
+<button onclick="show('🛡️ Crop Insurance','Crop insurance support and information.')">🛡️ Crop Insurance</button>
+<button onclick="show('🧪 Soil Testing','Soil health and nutrient testing information.')">🧪 Soil Testing</button>
+<button onclick="show('💰 Expense Calculator','Calculate farm expenses.')">💰 Expenses</button>
+<button onclick="show('🚚 Storage & Transport','Crop storage and transportation.')">🚚 Storage</button>
+<button onclick="voice()">🎤 Tamil Voice Assistant</button>
+</div>
+
+<div id="result">
+<h3>Welcome Farmer!</h3>
+<p>Select a service above.</p>
+</div>
+
+<script>
+function show(title,description){
+document.getElementById("result").innerHTML=
+"<h2>"+title+"</h2><p>"+description+"</p>";
+if(title.includes("Expenses")){
+document.getElementById("result").innerHTML+=
+'<input id="a" type="number" placeholder="Seed cost ₹">'+
+'<input id="b" type="number" placeholder="Fertilizer cost ₹">'+
+'<input id="c" type="number" placeholder="Labour cost ₹">'+
+'<input id="d" type="number" placeholder="Other cost ₹">'+
+'<button onclick="calc()">Calculate</button><h3 id="total"></h3>';
+}
+if(title.includes("Marketplace")){
+document.getElementById("result").innerHTML+=
+'<input placeholder="Crop name">'+
+'<input type="number" placeholder="Quantity kg">'+
+'<input type="number" placeholder="Price ₹">'+
+'<button onclick="alert(\'Demo listing added\')">Add Crop</button>';
+}
+if(title.includes("Equipment")){
+document.getElementById("result").innerHTML+=
+'<input placeholder="Equipment name">'+
+'<input placeholder="Village">'+
+'<input type="number" placeholder="Rent per day ₹">'+
+'<button onclick="alert(\'Demo equipment added\')">Add Equipment</button>';
+}
+}
+function calc(){
+let total=(Number(a.value)||0)+(Number(b.value)||0)+
+(Number(c.value)||0)+(Number(d.value)||0);
+document.getElementById("total").innerHTML="Total Expense ₹"+total;
+}
+function voice(){
+let R=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!R){alert("Open this app in Chrome for voice support");return;}
+let r=new R();
+r.lang="ta-IN";
+r.onresult=function(e){
+let t=e.results[0][0].transcript;
+document.getElementById("result").innerHTML="<h3>"+t+"</h3>";
+if(t.includes("மண்"))show("🧪 Soil Testing","Soil testing information");
+else if(t.includes("மாடு"))show("🐄 Animal Healthcare","Animal health information");
+else if(t.includes("செலவு"))show("💰 Expense Calculator","Calculate farm expenses");
+else if(t.includes("பயிர்"))show("🌱 Smart Fasal","Crop guidance");
+else show("தமிழ் உதவியாளர்","உங்கள் கேள்வியை மீண்டும் சொல்லுங்கள்");
+};
+r.start();
+}
+</script>
+
+</body>
+</html>
